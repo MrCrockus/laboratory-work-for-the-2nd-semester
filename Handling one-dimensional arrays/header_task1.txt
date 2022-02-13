@@ -1,0 +1,4 @@
+#pragma once
+int max(int A[], int size);
+void sort(int A[], int size);
+int proiz(int A[], int size);
