@@ -1,0 +1,26 @@
+%include "io.inc"
+
+section .data
+   pi dq 3
+   R dq 5
+   square dd 'S = ',0
+   length dd 'L = ',0
+   
+
+section .text
+    global CMAIN
+CMAIN:
+     PRINT_STRING square
+     mov ecx, [R]
+     mov ebx, [pi]
+     imul ebx , ecx  ;pi * R 
+     mov edx, ebx    ; Перенос в новую переменную для подсчет длины
+     imul ebx, ecx   ; pi*R*R
+     PRINT_DEC 4, ebx
+    NEWLINE
+    
+    
+    imul edx,2   ; pi * R * 2
+    PRINT_STRING length
+    PRINT_DEC 4, edx
+    ret

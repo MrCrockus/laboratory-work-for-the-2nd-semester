@@ -1,0 +1,71 @@
+using System;
+
+class Program {
+
+
+static void task1 () {
+  Console.WriteLine ("Enter the value of the radius (R) and I will find the length and area of the circle:");
+  double R = Convert.ToDouble(Console.ReadLine());
+  double pi = 3.14;
+  Console.WriteLine ("The lenght of a circle: L = 2 * pi * R");
+  Console.WriteLine ($"L = 2 * {pi} * {R}  = {2 * pi * R} \n");
+  Console.WriteLine ("Are of a circle: S = pi * R * R ");
+  Console.WriteLine ($"S = {pi} * {R} * {R} = {pi * R * R} \n");
+}
+
+static void task2 () {
+  Error:
+  Console.WriteLine ("Enter a positive integer number in the range from 1 to 27 and I will tell you it is my number or not:");
+  int number = Convert.ToInt32(Console.ReadLine());
+  if ((number >= 1) && (number <= 27)) {
+    if (number == 7) Console.WriteLine ("This is my number \n");
+    else {
+      Console.WriteLine ("This is not my number \n Want to try again? \n 1.Yes 2.No");
+      int tr = Convert.ToInt32(Console.ReadLine());
+      if (tr == 1) goto Error;
+      Console.Write ("\n");
+    }
+  }
+  else {
+    Console.WriteLine ("Input Error. Please try again.");
+    goto Error;
+  }
+}
+
+
+ static void task3 () {
+   Console.Write ("The program calculates the calue of the difference (-1) ^ (n+1) * n. Enter n = ");
+   int summ = 0;
+   int n = Convert.ToInt32 (Console.ReadLine());
+   for (int k = 1; k <= n; k++) {
+     int power = -1;
+     for (int i=0; i <= k + 1; i++) {
+       power *= -1;
+     }
+   int composition = power * k;
+     summ += composition;
+     Console.Write ($" ({composition}) +");
+   }
+   Console.Write ($" (0) = {summ} \n \n");
+ }
+  
+    static void Main() {
+      Main:
+        Console.WriteLine ("Select a task : \n 1. Find the length of a circle and the area of a circle of a given radius\n 2. My serial number in the journal\n 3. Counting the difference");
+      int choose = Convert.ToInt32(Console.ReadLine());
+     switch (choose) {
+       case 1:
+         task1();
+         goto Main;
+         
+       case 2:
+         task2();
+         goto Main;
+      
+       case 3:
+         task3();
+         goto Main;
+         
+     }
+  }
+}

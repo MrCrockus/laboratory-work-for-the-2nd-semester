@@ -1,0 +1,53 @@
+def Task1() :
+    pi = float(3.14)
+    print ("Enter the radius of the circle (R): ")
+    R = float(input())
+    print ("S = pi * R * R = ", round ((pi * R * R), 2))
+    print ("L = 2 * pi * R = ", round ((2 * pi * R), 2))
+    print ("\n")
+
+
+
+def Task2() :
+    print ("Enter a positive integer number in the range from 1 to 27 and I will tell you it is my number or not: ")
+    number = int(input())
+    if number >= 1 and number <= 27 :
+        if number == 7 :
+            print ("This is my number ")
+        else :
+            print ("This is not my number ")
+    else :
+        print ("Input Error")
+    print ("\n")
+
+
+def Task3() :
+    print ("The program calculates the calue of the difference (-1) ^ (n+1) * n.")
+    print ("Enter n:")
+    n = int(input())
+    summ = 0
+    for i in range(1, (n+1)):
+        power = (-1)
+        for k in range (0 , (i + 2)) :
+            power *= (-1)
+        composition = power * i
+        summ += composition
+        print (composition, end = " + ")
+    print (" = ", summ)
+    print ("\n")
+
+
+
+while 1:
+    print ("Select a task: \n1. Find the length of a circle and the area of a circle of a given radius \n2. My serial number in the journal \n3. Counting the difference \n4.Exit")
+    choice = int(input());
+    print ("\n")
+    if choice == 1 :
+        Task1()
+    if choice == 2 :
+        Task2()
+    if choice == 3 :
+        Task3()
+    if choice == 4 :
+        break
+

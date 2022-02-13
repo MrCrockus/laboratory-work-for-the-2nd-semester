@@ -1,0 +1,77 @@
+with Ada.Text_IO;   use Ada.Text_IO;
+with ada.Integer_Text_IO; use ada.Integer_Text_IO;
+with ada.Float_Text_IO; use ada.Float_Text_IO;
+
+
+ procedure main is
+ inputchoise :Integer;
+ 
+  procedure Task1 is 
+  inputR : Float;
+  pi: constant Float := 3.14;
+  L : Float;
+  S : Float;
+  begin
+ 
+   Put_Line ("Enter the radius of the circle: ");
+   Get (inputR);
+   L := (2.0 * inputR * pi);
+   Put ("L = 2 * pi * R = ");
+   Put (L);
+   Put_Line ("");
+   S := (pi * inputR * inputR);
+   Put ("S = pi * R * R = ");
+   Put (S);
+   end Task1;
+   
+  procedure Task2 is 
+  number: Integer;
+  begin
+   Put_Line ("Enter a positive integer number in the range from 1 to 27 and I will tell you it is my number or not: ");
+   Get (number);
+   if number >= 1 and number <= 27 then
+      if number = 7 then 
+         Put_Line ("This is my number ");
+      else Put_Line ("This is not my number");
+      end if;
+   else Put_Line ("Input Error");
+   end if;
+   end Task2;
+   
+  procedure Task3 is 
+  summ : Integer := 0;
+  n, i : Integer;
+  power : Integer;
+  composition : Integer;
+  begin
+   Put_Line ("The program calculates the calue of the difference (-1) ^ (n+1) * n. Where n = 17");
+   for n in 1..17 loop
+    power := -1;
+     for i in 0..(n+1) loop
+         power := power * (-1);
+         end loop;
+    composition := power * n;
+    summ := summ + composition;
+   Put (" (");
+   Put (composition);
+   Put (")");
+   Put (" + ");
+    end loop;
+    Put (" (0) =");
+    Put (summ);
+   end Task3;
+    
+    
+begin
+  Put_Line ("Select a task: ");
+  Put_Line ("1. Find the length of a circle and the area of a circle of a given radius");
+  Put_Line ("2. My serial number in the journal");
+  Put_Line ("3. Counting the difference");
+  Get (inputchoise);
+  case inputchoise is
+       when 1 => Task1;
+       when 2 => Task2; 
+       when 3 => Task3;
+       when others => Put_Line ("Error");
+  end case;
+end main; 

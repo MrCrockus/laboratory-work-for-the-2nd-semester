@@ -1,0 +1,79 @@
+package main
+import f "fmt"
+
+func task1() {
+  const pi float64 = 3.14
+  var R float64
+  f.Printf ("Enter the radius of the circle: ")
+  f.Scanf ("%f", &R)
+  S := R * R * pi
+  f.Printf ("S = R^2 * pi \n S = %.3f * %.3f * %.2f = %.4f\n", R, R, pi, S)
+  L := 2 * pi * R
+  f.Printf ("L = 2 * pi * R \n L = 2 * %.2f * %.3f = %.4f\n\n", pi,R,L)
+}
+
+
+func task2() {
+  var try int
+  Error:
+  f.Printf ("Enter a positive integer number in the range from 1 to 27 and I will tell you it is my number or not: ")
+  var number int
+  f.Scanf ("%d", &number)
+  if number >= 1 && number <= 27 {
+    if number == 7 {
+      f.Println ("This is my number \n")
+          }
+    if number != 7 {
+      f.Println ("This is not my number \n Want to try again? \n 1.Yes  2.No")
+      f.Scanf ("%d", &try)
+      if try == 1 {
+        goto Error
+            }
+    f.Println ("\n")
+         }
+      }
+if number < 1 || number > 27 {
+      f.Println ("Input Error. Please try again.")
+      goto Error
+  }
+}
+
+func task3() {
+  f.Println ("The program calculates the calue of the difference (-1) ^ (n+1) * n. Where n = 17")
+  summ := 0
+  var n int
+  for n = 1; n <= 17; n++ {
+    var power , composition int
+    power = -1
+    for i := 0; i <= n + 1; i++ {
+      power *= -1
+    }
+  composition = power * n
+    summ += composition
+  f.Printf (" (%d) +", composition)
+  }
+f.Println (" = ", summ)
+}
+
+
+
+func main() {
+  Main:
+  f.Println ("Select a task:")
+  f.Println ("1. Find the length of a circle and the area of a circle of a given radius")
+  f.Println ("2. My serial number in the journal")
+  f.Println ("3. Counting the difference")
+  var choose int
+  f.Scanf ("%d", &choose)
+  switch choose {
+  case 1:
+    task1()
+    goto Main
+  case 2:
+    task2()
+    goto Main
+  case 3:
+    task3()
+    goto Main
+  }
+}
