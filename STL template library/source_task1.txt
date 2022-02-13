@@ -1,0 +1,121 @@
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
+#include "Header.h"
+
+using namespace std;
+
+enum class Plane {
+	CREATE_PLANE,
+	PLANES_FOR_TOWN,
+	TOWNS_FOR_PLANE,
+	PLANES
+};
+
+void CREATE_PLANE(int num, int N, multimap<int, string>& plane)
+{
+	string TOWN;
+	int j;
+	for (j = 0; j < N; j++)
+	{
+		cin >> TOWN;
+		plane.emplace(make_pair(num, TOWN));
+	}
+}
+void PLANES_TOWN(multimap<int, string>& plane, string TOWN, vector <int> x)
+
+{
+	cout << TOWN << " : ";
+	for (int i = 0; i < x.size(); i++)
+	{
+		auto range = plane.equal_range(x[i]);
+		for (auto j = range.first; j != range.second; j++)
+		{
+			if (j->second == TOWN)
+			{
+				cout << j->first << ' ';
+			}
+		}
+	}
+	cout << endl;
+}
+void TOWNS_PLANE(int num, string TOWN, multimap<int, string>& plane)
+{
+	auto range = plane.equal_range(num);
+	cout << "PLANE " << num << ": ";
+	for (auto i = range.first; i != range.second; i++)
+	{
+		cout << i->second << ' ';
+
+	}
+	cout << endl;
+}
+void PLANES(int num, string TOWN, multimap <int, string> plane, vector <int> x)
+{
+	for (int i = 0; i < x.size(); i++)
+	{
+		auto range = plane.equal_range(x[i]);
+		cout << "PLANE " << x[i] << ": ";
+		for (auto i = range.first; i != range.second; i++)
+		{
+			cout << i->second << ' ';
+		}
+		cout << endl;
+	}
+}
+void main2()
+{
+	multimap <int, string> train;
+	vector <int> list;
+	int number, num, N;
+	string TOWN, slovo;
+	num = -1;
+	while (1) {
+		cout << "\nFeature List:\n1.CREATE_PLANE plane number of towns town1 town2 ... \n2.PLANES_FOR_TOWN town \n3.TOWNS_FOR_PLANE plane \n4.PLANES \n5.EXIT \n\n";
+		cin >> slovo;
+		if (slovo == "CREATE_PLANE") {
+			number = 0;
+		}
+		if (slovo == "PLANE_FOR_TOWN") {
+			number = 1;
+		}
+		if (slovo == "TOWNS_FOR_PLANE") {
+			number = 2;
+		}
+		if (slovo == "PLANES") {
+			number = 3;
+		}
+		if (slovo == "EXIT") break;
+		switch (Plane(number)) {
+		case Plane::CREATE_PLANE: {
+			cin >> num >> N;
+			CREATE_PLANE(num, N, train);
+			list.push_back(num);
+			break;
+		}
+		case Plane::PLANES_FOR_TOWN: {
+			cin >> TOWN;
+			PLANES_TOWN(train, TOWN, list);
+			break;
+		}
+		case Plane::TOWNS_FOR_PLANE: {
+			cin >> num;
+			TOWNS_PLANE(num, TOWN, train);
+			break;
+		}
+		case Plane::PLANES: {
+			if (num < 0) {
+				cout << "\nPlanes is absent";
+				break;
+			}
+			else {
+				PLANES(num, TOWN, train, list);
+				break;
+			}
+		}
+		default: break;
+		}
+	}
+}
